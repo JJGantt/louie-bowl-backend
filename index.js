@@ -16,7 +16,7 @@ console.log('DB_USER is:', process.env.DB_USER);
 const app = express();
 const upload = multer(); 
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 
 
@@ -141,6 +141,6 @@ app.post('/api/vote', async (req, res) => {
   
   
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
 });
