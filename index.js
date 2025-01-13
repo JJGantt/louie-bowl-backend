@@ -8,6 +8,11 @@ const path = require('path');
 require('dotenv').config(); 
 
 
+//test
+console.log('DB_HOST is:', process.env.DB_HOST);
+console.log('DB_USER is:', process.env.DB_USER);
+
+
 const app = express();
 const upload = multer(); 
 
