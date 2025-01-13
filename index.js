@@ -26,6 +26,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/api/test', async (req, res) => {
+    return res.status(400).json( {success: true });
+});
+
 app.post('/api/register', async (req, res) => {
     const { name, teammate, email } = req.body;
   
