@@ -65,7 +65,7 @@ app.post('/api/register', async (req, res) => {
 });
 
 app.post('/api/submit-art', upload.single('file'), async (req, res) => {
-    const { artistName, title, description } = req.body;
+    const { artistName, title, email, phone } = req.body;
     const file = req.file;
   
     if (!artistName || !title || !file) {
@@ -83,10 +83,10 @@ app.post('/api/submit-art', upload.single('file'), async (req, res) => {
       const uploadResult = await s3.upload(s3Params).promise();
   
       const query = `
-        INSERT INTO submissions (artist_name, artwork_title, description, file_path)
-        VALUES ($1, $2, $3, $4) RETURNING *;
+        INSERT INTO submissions (artist_name, artwork_title, email, phone, file_path)
+        VALUES ($1, $2, $3, $4, $5) RETURNING *;
       `;
-      const values = [artistName, title, description || null, uploadResult.Location];
+      const values = [artistName, title, email, phone, uploadResult.Location];
   
       const result = await pool.query(query, values);
   
